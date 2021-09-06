@@ -15,9 +15,9 @@ Em linhas de código podemos exemplificar utilizando uma lógica para veículos,
 ``` cpp
 class Veiculo{
     public:
-        void setDono();
-        void setDocumento();
-        void setPlaca();
+        void setDono(string nome, int idade);
+        void setDocumento(string documento1, string documento2);
+        void setPlaca(string placa);
         float calcIpva(); 
 }
 ```
@@ -32,23 +32,31 @@ Apesar do agrupamento feito fazer sentido à primeira vista para um veículo, se
 ``` cpp
 class Veiculo{
     public:
-        void setDono();
+        void setDono(Pessoa dono);
+        void setDocumentacao(Documento documento);
+        void setPlaca(Placa placa);
+}
+
+class Pessoa{
+    public:
+        setNome(string nome);
+        setIdade(int idade);
 }
 
 class Documento{
     public:
-        void setDocumento();
+        void setDocumento(string documento1, string documento2);
 }
 
 class Placa{
     public:
-        void setPlaca();   
+        void setPlaca(string newPlaca);   
 }
 
 class CalcImposto{
     public:
-        float calcIpva();
+        float calcIpva(Veiculo veiculo);
 }
 ```
 
-Aqui garantimos que cada classe tem apenas um único motivo para mudar. Caso haja alguma mudança ma documentaçao necessária para um veículo, ou na lógica para a criação de placas ou no cálculo do IPVA, apenas suas respectivas classes serão alteradas, fazendo que tal alteração não seja propagada para outras classe. Desse modo, garantimos que o Princípio da Responsabilidade Única fosse respeitado.
+Aqui garantimos que cada classe tem apenas um único motivo para mudar. Caso haja alguma mudança ma documentaçao necessária para um veículo, ou na lógica para a criação de placas ou no cálculo do IPVA, apenas suas respectivas classes serão alteradas, fazendo que tal alteração não seja propagada para outras classe. A classe veiculo apenas armazena referências para estas outras classes. Desse modo, garantimos que o Princípio da Responsabilidade Única fosse respeitado.
